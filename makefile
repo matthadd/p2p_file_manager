@@ -1,5 +1,7 @@
-SRC = $(wildcard *.c)
-BIN = $(patsubst %.c,%,$(SRC))
+SRCDIR = ./src
+BUILDIR = ./build
+SRC = $(wildcard $(SRCDIR)/*.c)
+BIN = $(patsubst %.c, %, $(SRC))
 
 CFLAGS +=  -Wall -Wextra -g
 # CFLAGS += -Werror -Wall -Wextra -g

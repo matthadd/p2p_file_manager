@@ -1,18 +1,20 @@
-// Server side C/C++ program to demonstrate Socket programming
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+
 #define PORT 8080
+#define BUFFER_SIZE 1024
+
 int main(int argc, char const *argv[])
 {
     int server_fd, new_socket, valread;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
-    char buffer[1024] = {0};
+    char buffer[BUFFER_SIZE] = {0};
     char *hello = "Hello from server";
 
     // Creating socket file descriptor
@@ -51,7 +53,7 @@ int main(int argc, char const *argv[])
         perror("accept");
         exit(EXIT_FAILURE);
     }
-    valread = read(new_socket, buffer, 1024);
+    valread = read(new_socket, buffer, BUFFER_SIZE);
     printf("buffer : %s\n", buffer);
     send(new_socket, hello, strlen(hello), 0);
     printf("Hello message sent\n");
